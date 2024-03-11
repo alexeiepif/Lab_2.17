@@ -10,6 +10,7 @@
 import bisect
 import json
 import os
+import sys
 
 import click
 from jsonschema import ValidationError, validate
@@ -33,7 +34,7 @@ def add_route(routes, start, end, number):
         )
         is_dirty = True
     else:
-        print("Данный маршрут уже добавлен.")
+        click.echo("Данный маршрут уже добавлен.")
     return routes, is_dirty
 
 
@@ -43,20 +44,22 @@ def display_routes(routes):
     """
     if routes:
         line = "+-{}-+-{}-+-{}-+".format("-" * 30, "-" * 20, "-" * 8)
-        print(line)
-        print("| {:^30} | {:^20} | {:^8} |".format("Начало", "Конец", "Номер"))
-        print(line)
+        click.echo(line)
+        click.echo(
+            "| {:^30} | {:^20} | {:^8} |".format("Начало", "Конец", "Номер")
+        )
+        click.echo(line)
         for route in routes:
-            print(
+            click.echo(
                 "| {:<30} | {:<20} | {:>8} |".format(
                     route.get("начальный пункт", ""),
                     route.get("конечный пункт", ""),
                     route.get("номер маршрута", ""),
                 )
             )
-        print(line)
+        click.echo(line)
     else:
-        print("Список маршрутов пуст.")
+        click.echo("Список маршрутов пуст.")
 
 
 def select_routes(routes, name_point):
@@ -114,11 +117,11 @@ def load_routes(file_name):
     try:
         # Валидация
         validate(instance=data, schema=schema)
-        print("JSON валиден по схеме.")
+        click.echo(click.style("JSON валиден по схеме.", fg="green"))
         return data
     except ValidationError as e:
-        print(f"Ошибка валидации: {e.message}")
-        return []
+        click.echo(click.style(f"Ошибка валидации: {e.message}", fg="red"))
+        sys.exit(1)
 
 
 @click.group()
