@@ -165,8 +165,10 @@ def main(command_line=None):
     # Загрузить всех работников из файла, если файл существует.
     is_dirty = False
 
-    if os.path.exists(args.filename):
-        routes = load_routes(args.filename)
+    filename = os.path.join('data', args.filename)
+    
+    if os.path.exists(filename):
+        routes = load_routes(filename)
     else:
         routes = []
 
@@ -183,7 +185,7 @@ def main(command_line=None):
             selected = select_routes(routes, name_point)
             display_routes(selected)
     if is_dirty:
-        save_routes(args.filename, routes)
+        save_routes(filename, routes)
 
 
 if __name__ == "__main__":

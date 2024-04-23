@@ -140,10 +140,12 @@ def main(command_line=None):
     # Выполнить разбор аргументов командной строки.
     args = parser.parse_args(command_line)
 
+
+    filename = os.path.join('data', args.filename)
     # Загрузить всех работников из файла, если файл существует.
     is_dirty = False
-    if os.path.exists(args.filename):
-        workers = load_workers(args.filename)
+    if os.path.exists(filename):
+        workers = load_workers(filename)
     else:
         workers = []
     # Добавить работника.
@@ -159,7 +161,7 @@ def main(command_line=None):
         display_workers(selected)
     # Сохранить данные в файл, если список работников был изменен.
     if is_dirty:
-        save_workers(args.filename, workers)
+        save_workers(filename, workers)
 
 
 if __name__ == "__main__":
