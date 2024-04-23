@@ -165,8 +165,8 @@ def main(command_line=None):
     # Загрузить всех работников из файла, если файл существует.
     is_dirty = False
 
-    filename = os.path.join('data', args.filename)
-    
+    filename = os.path.join("data", args.filename)
+
     if os.path.exists(filename):
         routes = load_routes(filename)
     else:

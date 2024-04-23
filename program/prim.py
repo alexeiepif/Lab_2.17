@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Для примера 1 лабораторной работы 2.16 
+# Для примера 1 лабораторной работы 2.16
 # разработайте интерфейс командной строки.
 
 
@@ -140,8 +140,7 @@ def main(command_line=None):
     # Выполнить разбор аргументов командной строки.
     args = parser.parse_args(command_line)
 
-
-    filename = os.path.join('data', args.filename)
+    filename = os.path.join("data", args.filename)
     # Загрузить всех работников из файла, если файл существует.
     is_dirty = False
     if os.path.exists(filename):

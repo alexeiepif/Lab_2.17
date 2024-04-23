@@ -141,7 +141,7 @@ def add(filename, start, end, number):
     Add a new route.
     """
 
-    filename = os.path.join('data', filename)
+    filename = os.path.join("data", filename)
     routes = load_routes(filename)
 
     routes, is_dirty = add_route(routes, start.lower(), end.lower(), number)
@@ -161,7 +161,7 @@ def select(filename, point):
     """
     Select the routes
     """
-    filename = os.path.join('data', filename)
+    filename = os.path.join("data", filename)
     point = point.lower()
     routes = load_routes(filename)
     selected_routes = select_routes(routes, point)
@@ -174,7 +174,7 @@ def display(filename):
     """
     Display all routes
     """
-    filename = os.path.join('data', filename)
+    filename = os.path.join("data", filename)
     routes = load_routes(filename)
     display_routes(routes)
 
